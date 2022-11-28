@@ -1,0 +1,23 @@
+@@ -32,6 +32,11 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms :b
+app.use('/api/login', loginRouter)
+app.use('/api/users', usersRouter)
+
+if (process.env.NODE_ENV === 'test') {
+  const testingRouter = require('./controllers/testing')
+  app.use('/api/testing', testingRouter)
+}
+
+app.use(middleware.tokenExtractor)
+app.use(middleware.tokenValidator)
+const testingRouter = require('express').Router()
+const Blog = require('../models/blog')
+const User = require('../models/user')
+
+testingRouter.post('/reset', async (request, response) => {
+  await Blog.deleteMany({})
+  await User.deleteMany({})
+
+  response.status(204).end()
+})
+
+module.exports = testingRouter
