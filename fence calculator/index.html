@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src=“./app.js"></script>
+    <title>Fencing Calculator</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Fencing Calculator</h1>
+        <div class="main">
+          <div class="label">
+            <label> Length: </label><br>
+            <label> Height: </label><br>
+            <label> Space b/w Fence: </label><br>
+            <label> Pole Distance: </label><br>
+          </div>
+
+          <div class="input"><input id="length" placeholder="Enter Length in Feet" type="number"><br>
+            <input id="height" placeholder="Enter Height in Feet" type="number"><br>
+            <input id="space" placeholder="Enter Space in Feet" type="number"><br>
+            <input id="pol" placeholder="Enter Pole Distance" type="number">
+          </div>  
+        </div>
+        
+       
+        <div>
+            
+            <button class="cta">
+              Calculate
+            </button>
+        </div>
+        <p>Total Wire Used: <span id="wirResult"></span> Ft</p>
+        <p>Total Poles Used: <span id="polResult"></span> Ft</p>
+    </div>
+</body>
+<script>
+    const calculate = () => {
+        let length = document.getElementById("length").value
+        let height = document.getElementById("height").value
+        let wire_space = document.getElementById("space").value
+        let pol = document.getElementById("pol").value
+        let total_wire = height / wire_space * length
+        let total_pols = length / pol + 1
+        document.getElementById("wirResult").innerHTML = total_wire
+        document.getElementById("polResult").innerHTML = total_pols
+    }
+</script>
+</html>
